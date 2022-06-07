@@ -1,0 +1,19 @@
+<scroll-view scroll-y="true" style="height:{{height}}px;" bindscrolltolower="tolower">
+  <view class="notice-list">
+    <block wx:for="{{notice}}">
+      <view class="item" >
+        <view class="img" bindtap="del" data-Index="{{index}}"  data-Id="{{item._id}}">
+          <image src="../../images/close.png"></image>
+        </view>
+        <view class="header">
+          {{item.time}}
+        </view>
+        <i-alert type="success" bindtap="nav" data-Detail="{{item}}" data-Id="{{item._id}}">
+          {{item.msg}}
+        </i-alert>
+      </view>
+    </block>
+  </view>
+</scroll-view>
+<i-message id="message" />
+<i-spin size="large" fix wx:if="{{ spinShow }}"></i-spin>

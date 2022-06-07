@@ -1,0 +1,21 @@
+<i-panel title="已存在的类别">
+  <view class="class-list">
+    <block wx:for="{{complaintClass}}">
+      <view class="item">
+        <view class="img">
+          <image bindtap="delComplaint" data-Index="{{index}}" data-Id="{{item._id}}" src="../../images/close.png"></image>
+        </view>
+        <view class="title">{{item.title}}</view>
+      </view>
+    </block>
+    <view class="item">
+      <button size="mini" bindtap="showModel" style="padding:10rpx;background:#2d8cf0;color:#fff;">添加类别</button>
+    </view>
+  </view>
+</i-panel>
+<i-modal visible="{{ visible }}" bind:ok="handleConfirm" bind:cancel="handleClose">
+  <input type="text" value="{{inputValue}}" bindinput="inputChange" placeholder="请输入类别名字" />
+</i-modal>
+
+<i-message id="message" />
+<i-spin size="large" fix wx:if="{{ spinShow }}"></i-spin>

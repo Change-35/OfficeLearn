@@ -1,0 +1,142 @@
+<view class="video">
+  <video autoplay="{{true}}" picture-in-picture-mode="{{['push', 'pop']}}" bindenterpictureinpicture='bindVideoEnterPictureInPicture' bindleavepictureinpicture='bindVideoLeavePictureInPicture' src="{{video.videoUrl}}"></video>
+</view>
+<view class="user" bindtap="navFocus">
+  <image src="{{userDetail.avatarUrl}}"></image>
+</view>
+<!-- 信息 -->
+<view class="detail-title">
+  <view class="detail">
+    <span>{{video.title}}</span>
+    <view class="msg">110.0万播放 ·
+      {{video.time}}</view>
+  </view>
+  <view class="focus">
+    <view class="btn" wx:if="{{isFocus}}" style="background:#bbbec4;">已关注</view>
+    <view class="btn" wx:else bindtap="focus">关注</view>
+  </view>
+</view>
+<!-- 点赞转发分享 -->
+<view class="click-action">
+  <view class="item">
+    <image wx:if="{{isGood}}" bindtap="clearGood" src="../../images/video/good1.png"></image>
+    <image wx:else bindtap="good" src="../../images/video/good0.png"></image>
+    {{numGood}}
+  </view>
+  <view class="item">
+    <image wx:if="{{isCollection}}" bindtap="clearCollection" src="../../images/video/collection1.png"></image>
+    <image wx:else bindtap="collection" src="../../images/video/collection0.png"></image>
+    {{numCollection}}
+  </view>
+  <view class="item">
+    <button class="sharebtn" bindtap="share" style="height:50rpx;width:50rpx;" open-type="share"></button>
+    <image src="../../images/video/share.png"></image>
+    {{numShare}}
+  </view>
+  <span class="complaint" bindtap="complaint">稿件投诉</span>
+</view>
+<!-- 描述 -->
+<view class="msg">
+  {{video.videoMsg}}
+</view>
+<!-- 标签 -->
+<view class="tag">
+  <block wx:for="{{video.videoTag}}">
+    <view class="item">
+      <i-tag class="i-tags" name="{{item}}" wx:if="{{index%3 == 0}}" color="green">
+        {{item}}
+      </i-tag>
+      <i-tag class="i-tags" name="{{item}}" wx:if="{{index%3 == 1}}" color="blue">
+        {{item}}
+      </i-tag>
+      <i-tag class="i-tags" name="{{item}}" wx:if="{{index%3 == 2}}" color="yellow">
+        {{item}}
+      </i-tag>
+    </view>
+  </block>
+</view>
+
+<!-- 评论 -->
+<view class="send">
+  <image src="https://i0.hdslb.com/bfs/face/120b2b8da1cc57a68532da087e594a53c433cde4.jpg@52w_52h.webp"></image>
+  <view class="item">
+    <input type="text" bindinput="inputText" placeholder="发条友善的评论" placeholder-class="input" />
+    <button bindtap="send" size="mini">评论</button>
+  </view>
+</view>
+<view class="line"></view>
+<!-- 评论区 -->
+<view class="content">
+  <view class="select">
+    <i-tabs current="{{ current }}" bindchange="handleChange">
+      <i-tab key="tab1" title="按热度排序"></i-tab>
+      <i-tab key="tab2" title="按时间排序"></i-tab>
+    </i-tabs>
+  </view>
+  <block wx:for="{{comment}}">
+    <view class="msg">
+      <view class="img">
+        <image src="{{item.user[0].avatarUrl}}"></image>
+      </view>
+      <view class="content">
+        <span>{{item.user[0].nickName}}</span>
+        <view class="content-msg">
+          {{item.msg}}
+        </view>
+        <view class="action-list">
+          <view>来自{{item.system}}</view>
+          <view>{{item.time}}</view>
+          <view class="img">
+            <image src="../../images/video/gal0.png"></image>{{item.praise}}
+          </view>
+          <view class="img">
+            <image src="../../images/video/br0.png"></image>{{item.bad}}
+          </view>
+          <view class="send-msg" hover-class="hover-msg">回复</view>
+        </view>
+        <!-- <view class="child-msg">
+          <view class="img">
+            <image src="https://i2.hdslb.com/bfs/face/1be1eeca08bed8a45c8d83d3a2dd92aeaf3b5e9d.jpg@52w_52h.webp">
+            </image>
+          </view>
+          <view class="msg">
+            <span>笑皮猪</span>
+            <view class="content">
+              元宵节快乐！也祝汤老师健康幸福！祝汤老师的学生们都能阳光快乐的生活、实现自己的理想、找到自己的价值
+            </view>
+            <view class="time">2021-02-26 16:21</view>
+          </view>
+        </view>
+        <view class="child-msg">
+          <view class="img">
+            <image src="https://i1.hdslb.com/bfs/face/ff492bc130e9c3e0a13fac1065b3e4b50335e3e9.jpg@52w_52h.webp">
+            </image>
+          </view>
+          <view class="msg">
+            <span>Kcy丨</span>
+            <view class="content">
+              捉！（虽然没考高数）
+            </view>
+            <view class="time">2021-02-26 16:21</view>
+          </view>
+        </view>
+        <view class="child-msg">
+          <view class="img">
+            <image src="https://i2.hdslb.com/bfs/face/b82e902fef6891de35cebdc374d83ab22cdd7b2f.gif"></image>
+          </view>
+          <view class="msg">
+            <span>-nines97-</span>
+            <view class="content">
+              punchline
+            </view>
+            <view class="time">2021-02-26 16:21</view>
+          </view>
+        </view> -->
+      </view>
+    </view>
+    <view class="line"></view>
+  </block>
+  <i-load-more wx:if="{{comment.length == 0}}" tip="暂无数据" loading="{{ false }}" />
+</view>
+<i-message id="message" />
+<i-spin size="large" fix wx:if="{{ spinShow }}"></i-spin>

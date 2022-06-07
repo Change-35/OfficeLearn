@@ -1,0 +1,32 @@
+<swiper bindchange="change" vertical="true" style="height:{{height}}px;">
+  <swiper-item>
+    <i-panel title="发布公告">
+      <view class="text-box">
+        <textarea name="review" maxlength="{{maxNumber}}" class="textArea" value="{{inputValue}}" bindinput='inputText'
+          placeholder="请输入公告内容..."></textarea>
+        <span class="wordwrap">{{number}}/{{maxNumber}}</span>
+      </view>
+    </i-panel>
+    <button bindtap="submit" style="background:#2d8cf0;color:#fff;margin-top:30rpx;">发布</button>
+    <view class="img">
+      <image src="../../images/slider.png"></image>
+    </view>
+  </swiper-item>
+  <swiper-item>
+    <i-panel title="最新公告数据">
+      <view class="notice-list">
+        <view class="item" bindtap="nav">
+          <view class="header">{{notice.time}}</view>
+          <i-alert type="success">
+            {{notice.msg}}
+          </i-alert>
+        </view>
+      </view>
+      <view class="statistical">
+        <canvas canvas-id="pieCanvas" class="canvas" style="width:100%;height:400rpx;"></canvas>
+      </view>
+    </i-panel>
+  </swiper-item>
+</swiper>
+<i-message id="message" />
+<i-spin size="large" fix wx:if="{{ spinShow }}"></i-spin>

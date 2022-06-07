@@ -1,0 +1,21 @@
+<view class="video-list">
+  <view wx:for="{{seriseVideo}}" class="item">
+    <image mode="aspectFill" data-Video="{{item.videoUrl}}" bindtap="show" src="{{item.img}}"></image>
+    <view class="title">{{index + 1}}、{{item.title}}</view>
+    <view class="img" data-Id="{{item._id}}" bindtap="del">
+      <image src="../../images/close.png"></image>
+    </view>
+  </view>
+</view>
+<!-- 上传 -->
+<view class="beside" hover-class="click">
+  <image bindtap="nav" src="../../images/upload.png"></image>
+</view>
+
+<!-- show -->
+<view wx:if="{{isShow}}" bindtap="hideShow" class="bg">
+  <view class="video">
+    <video src="{{video}}" autoplay="true"></video>
+  </view>
+</view>
+<i-message id="message" />

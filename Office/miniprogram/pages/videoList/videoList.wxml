@@ -1,0 +1,17 @@
+<view class="video-list">
+  <view class="item" wx:for="{{seriseVideo}}" data-Index="{{index}}" bindtap="showVideo">
+    <image mode="aspectFill" src="{{item.img}}">
+    </image>
+    <view class="title">{{index + 1}}、{{item.title}}</view>
+  </view>
+</view>
+<view class="mask" wx:if="{{isShowVideo}}">
+  <view class="video">
+    <image class="close" bindtap="showVideo"  src="../../images/close.png"></image>
+    <video style="width:600rpx;height:510rpx;"
+      src="{{video}}"></video>
+    <view class="title">
+      {{title}}
+    </view>
+  </view>
+</view>

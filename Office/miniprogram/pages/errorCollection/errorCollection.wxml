@@ -1,0 +1,50 @@
+<view class="tips" wx:if="{{isTips}}">
+  <i-notice-bar icon="systemprompt" bind:close="closeBar" loop closable>
+    双击题目可以删除
+  </i-notice-bar>
+</view>
+<scroll-view scroll-y="true" style="height:{{height}}px;" bindscrolltolower="tolower">
+  <view class="detail">
+    <block wx:for="{{recordClass}}">
+      <view class="item" wx:if="{{item.type == 1}}" bindtap="doubleClick">
+        <view class="item-row">
+          <view class="title">题目</view>
+          <view class="msg msg-title">{{item.title}}</view>
+        </view>
+        <view class="item-row">
+          <view class="title">A</view>
+          <view class="msg msg-title">{{item.A}}</view>
+        </view>
+        <view class="item-row">
+          <view class="title">B</view>
+          <view class="msg msg-title">{{item.B}}</view>
+        </view>
+        <view class="item-row">
+          <view class="title">C</view>
+          <view class="msg msg-title">{{item.C}}</view>
+        </view>
+        <view class="item-row">
+          <view class="title">D</view>
+          <view class="msg msg-title">{{item.D}}</view>
+        </view>
+        <view class="item-row">
+          <view class="title">正确答案</view>
+          <view class="msg">{{item.result}}</view>
+        </view>
+      </view>
+      <view class="item" wx:else bindtap="doubleClick">
+        <view class="item-row">
+          <view class="title">题目</view>
+          <view class="msg msg-title">{{item.title}}</view>
+        </view>
+        <view class="item-row">
+          <view class="title">正确答案</view>
+          <view class="msg">{{item.result}}</view>
+        </view>
+      </view>
+    </block>
+  </view>
+  <i-load-more wx:if="{{recordClass.length == 0}}" tip="暂无数据" loading="{{ false }}" />
+</scroll-view>
+<i-message id="message" />
+<i-spin size="large" fix wx:if="{{ spinShow }}"></i-spin>

@@ -1,0 +1,30 @@
+<view class="header">
+  <view class="detail">
+    <view class="img">
+      <image src="{{userDetail.avatarUrl}}">
+      </image>
+    </view>
+    <view class="title">
+      <view class="name">{{userDetail.nickName}}</view>
+      <view class="role">热血青年 | 热血小伙子</view>
+    </view>
+  </view>
+  <view class="line"></view>
+  <view class="describe">
+    本人性格热情开朗，待人友好，为人诚实谦虚。本人性格热情开朗，待人友好，为人诚实谦虚。本人性格热情开朗，待人友好，为人诚实谦虚。本人性格热情开朗，待人友好，为人诚实谦虚。本人性格热情开朗，待人友好，为人诚实谦虚。本人性格热情开朗，待人友好，为人诚实谦虚。本人性格热情开朗，待人友好，为人诚实谦虚。本人性格热情开朗，待人友好，为人诚实谦虚。
+  </view>
+</view>
+<!-- 正文 -->
+<view class="content" style="height:{{contentHeight - 15}}px;">
+  <block wx:for="{{video}}">
+    <view class="item" bindtap="nav" data-Id="{{item._id}}">
+      <view class="img">
+        <image src="{{item.imageUrl}}">
+        </image>
+      </view>
+      <view class="title">{{item.title}}</view>
+    </view>
+  </block>
+</view>
+<i-message id="message" />
+<i-spin size="large" fix wx:if="{{ spinShow }}"></i-spin>

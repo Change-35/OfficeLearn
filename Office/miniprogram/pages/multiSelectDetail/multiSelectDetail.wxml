@@ -1,0 +1,43 @@
+<view class="tips" wx:if="{{isTips}}">
+  <i-notice-bar icon="systemprompt" bind:close="closeBar" loop closable>
+    双击题目可以添加到专题集
+  </i-notice-bar>
+</view>
+<view class="detail">
+  <block wx:for="{{titleResult}}">
+    <view class="item" bindtap="doubleClick" data-Id="{{item._id}}">
+      <view class="item-row">
+        <view class="title">题目</view>
+        <view class="msg msg-title">{{item.title}}</view>
+      </view>
+      <view class="item-row">
+        <view class="title">A</view>
+        <view class="msg msg-title">{{item.A}}</view>
+      </view>
+      <view class="item-row">
+        <view class="title">B</view>
+        <view class="msg msg-title">{{item.B}}</view>
+      </view>
+      <view class="item-row">
+        <view class="title">C</view>
+        <view class="msg msg-title">{{item.C}}</view>
+      </view>
+      <view class="item-row">
+        <view class="title">D</view>
+        <view class="msg msg-title">{{item.D}}</view>
+      </view>
+      <view class="item-row">
+        <view class="title">所选答案</view>
+        <view class="msg" wx:if="{{item.answer == -1}}" style="color:#ed3f14;">未选择</view>
+        <view class="msg" wx:else style="color:{{item.answer == item.result?'#19be6b':'#ed3f14'}};">{{item.answer}}
+        </view>
+      </view>
+      <view class="item-row">
+        <view class="title">正确答案</view>
+        <view class="msg">{{item.result}}</view>
+      </view>
+    </view>
+  </block>
+</view>
+<i-message id="message" />
+<i-spin size="large" fix wx:if="{{ spinShow }}"></i-spin>

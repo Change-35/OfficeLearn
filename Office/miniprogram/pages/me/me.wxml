@@ -1,0 +1,22 @@
+<view class="card">
+  <view class="img">
+    <image src="{{user.avatarUrl}}"></image>
+  </view>
+  <view class="name">
+    Hi;<text>{{user.nickName}}</text>
+  </view>
+</view>
+
+<view class="card-list">
+  <block wx:for="{{cardList}}">
+    <view bindtap="nav" data-Id="{{index}}" class="item">
+      <view class="img">
+        <image src="{{item.logo}}"></image>
+      </view>
+      <view class="title">
+        {{item.title}}
+      </view>
+    </view>
+  </block>
+</view>
+<i-spin size="large" fix wx:if="{{ spinShow }}"></i-spin>

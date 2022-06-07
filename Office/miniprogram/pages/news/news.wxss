@@ -1,0 +1,14 @@
+@import "/wxParse/wxParse.wxss";
+.title-list{
+  padding: 20rpx;
+}
+
+.title-list span{
+  font-size: 40rpx;
+  font-weight: 600;
+}
+
+.title-list .msg{
+  font-size: 28rpx;
+  color: #bbbec4;
+}

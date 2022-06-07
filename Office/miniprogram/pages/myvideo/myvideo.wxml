@@ -1,0 +1,22 @@
+<scroll-view scroll-y="true" style="height:{{height}}px;" bindscrolltolower="tolower">
+  <view class="content">
+    <block wx:for="{{video}}">
+      <view class="item">
+        <view class="close" data-Id="{{item._id}}" bindtap="delete">
+          <image src="../../images/close.png"></image>
+        </view>
+        <view class="img">
+          <image src="{{item.imageUrl}}">
+          </image>
+        </view>
+        <view class="title">{{item.title}}</view>
+      </view>
+    </block>
+  </view>
+  <i-load-more wx:if="{{video.length == 0}}" tip="暂无数据" loading="{{ false }}" />
+</scroll-view>
+<i-modal title="删除确认" visible="{{ visible5 }}" actions="{{ actions5 }}" bind:click="handleClick5">
+  <view>删除后无法恢复哦</view>
+</i-modal>
+<i-spin size="large" fix wx:if="{{ spinShow }}"></i-spin>
+<i-message id="message" />
